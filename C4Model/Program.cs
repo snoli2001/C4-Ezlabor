@@ -13,9 +13,9 @@ namespace C4Model
 
         static void Banking()
         {
-            const long workspaceId = 59940;
-            const string apiKey = "8fd90218-4134-45c1-8616-8ad9587bed01";
-            const string apiSecret = "f0c44a4a-bc92-4b65-92ec-98c372d219b7";
+            const long workspaceId = 0;
+            const string apiKey = "";
+            const string apiSecret = "";
 
             StructurizrClient structurizrClient = new StructurizrClient(apiKey, apiSecret);
             Workspace workspace = new Workspace("Banking", "Banking - C4 Model");
@@ -50,7 +50,6 @@ namespace C4Model
             contextView.PaperSize = PaperSize.A4_Landscape;
             contextView.AddAllSoftwareSystems();
             contextView.AddAllPeople();
-            //contextView.EnableAutomaticLayout();
 
             Styles styles = viewSet.Configuration.Styles;
             styles.Add(new ElementStyle(Tags.Person) { Background = "#0a60ff", Color = "#ffffff", Shape = Shape.Person });
@@ -90,7 +89,6 @@ namespace C4Model
             ContainerView containerView = viewSet.CreateContainerView(internetBankingSystem, "Contenedor", "Diagrama de contenedores - Banking");
             contextView.PaperSize = PaperSize.A4_Landscape;
             containerView.AddAllElements();
-            //containerView.EnableAutomaticLayout();
 
             // 3. Diagrama de Componentes
             Component transactionController = restApi.AddComponent("Transactions Controller", "Allows users to perform transactions.", "Spring Boot REST Controller");
@@ -111,7 +109,6 @@ namespace C4Model
             componentViewForRestApi.AddAllComponents();
             componentViewForRestApi.Add(cliente);
             componentViewForRestApi.Add(mainframeBankingSystem);
-            //componentViewForRestApi.EnableAutomaticLayout();
 
             structurizrClient.UnlockWorkspace(workspaceId);
             structurizrClient.PutWorkspace(workspaceId, workspace);
